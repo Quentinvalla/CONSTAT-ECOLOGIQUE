@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Constat écologique</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8D%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{min-height:100vh;display:grid;place-items:center;padding:16px;background:#e9ece8;color:#202923;font-family:Arial,Helvetica,sans-serif}
+.slide{width:min(96vw,calc((100vh - 32px)*1.7778));min-height:calc(100vh - 32px);background:#fbfcf9;padding:3.1% 3.4% 2.2%;display:flex;flex-direction:column;overflow:visible;box-shadow:0 8px 28px rgba(30,45,35,.12);border:1px solid #d9dfd8}
+.topline{height:4px;width:52px;background:#54745c;margin-bottom:1.6%}
+.kicker{margin:0 0 .6%;color:#617565;font-size:clamp(8px,.78vw,12px);font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+h1{margin:0;color:#202923;font-size:clamp(25px,2.65vw,40px);line-height:1.05;font-weight:700;letter-spacing:-.035em}
+.intro{margin:1% 0 2.3%;color:#68736b;font-size:clamp(10px,.95vw,14px);line-height:1.35}
+.groups{display:grid;grid-template-columns:1.12fr 1fr .9fr;gap:1.35%;flex:1;min-height:0}
+.group{min-width:0;border:1px solid #dce3db;background:#fff;display:flex;flex-direction:column;padding:4.2% 5%}
+.group-heading{display:flex;align-items:flex-start;gap:9px;min-height:16%;padding-bottom:4%;margin-bottom:3%;border-bottom:1px solid #e6ebe5}
+.group-number{flex:0 0 auto;color:#54745c;font-size:clamp(10px,.9vw,14px);font-weight:700;padding-top:2px}
+h2{margin:0;color:#26352b;font-size:clamp(13px,1.2vw,18px);line-height:1.16;font-weight:700}
+.entries{display:flex;flex-direction:column;flex:1;min-height:0}
+.entry{display:grid;grid-template-columns:minmax(0,1fr) clamp(55px,6.1vw,88px);align-items:center;gap:8px;flex:0 0 auto;min-height:0;border-bottom:1px solid #edf0ec;padding:2.2% 0}
+.entry:last-child{border-bottom:0}
+.term{color:#303b33;font-size:clamp(9px,.88vw,13px);line-height:1.2;font-weight:600}
+.photo{width:100%;height:auto;aspect-ratio:16/9;border:0;background:#f3f6f1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo{position:relative;padding:0;cursor:zoom-in;transition:border-color .2s ease,box-shadow .2s ease}
+.photo:hover,.photo:focus-visible{border-color:#54745c;box-shadow:0 3px 12px rgba(30,45,35,.18);outline:none}
+.photo img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.photo:hover img,.photo:focus-visible img{transform:scale(1.09)}
+.filename{color:#6b7b6d;font-size:clamp(7px,.65vw,10px);text-align:center;padding:2px;line-height:1.1}
+.photo.has-image .filename{display:none}
+.image-viewer{width:min(92vw,1100px);max-width:none;max-height:90vh;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
+.image-viewer[open]{animation:viewer-appear .24s cubic-bezier(.2,.75,.25,1) both}
+.image-viewer::backdrop{background:rgba(17,25,20,.78);backdrop-filter:blur(5px)}
+.viewer-term{margin:0 48px 16px;text-align:center;color:#fff;font-size:clamp(22px,3vw,34px);line-height:1.15;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.35);overflow-wrap:anywhere}
+.image-viewer[open] .viewer-term{animation:viewer-term-appear .32s cubic-bezier(.2,.75,.25,1) both}
+.viewer-photo-frame{padding:14px;border:1px solid rgba(255,255,255,.35);border-radius:14px;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.image-viewer img{display:block;width:100%;max-height:calc(90vh - 128px);object-fit:contain;border-radius:8px;cursor:zoom-out}
+.viewer-close{position:absolute;top:0;right:0;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:#26352b;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.25)}
+.viewer-close:focus-visible{outline:3px solid #54745c;outline-offset:3px}
+@keyframes viewer-appear{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes viewer-term-appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.definition{margin-top:3.5%;padding-top:3%;border-top:1px solid #e6ebe5;color:#68736b;font-size:clamp(8px,.72vw,11px);line-height:1.28;font-weight:400}
+.definition strong{color:#526657;font-weight:700}
+footer{display:flex;justify-content:space-between;align-items:center;margin-top:1.5%;padding-top:1%;border-top:1px solid #e3e8e1;color:#7a857c;font-size:clamp(7px,.68vw,10px);letter-spacing:.035em}
+@media(max-width:700px){body{display:block;padding:0}.slide{width:100%;min-height:100vh;aspect-ratio:auto;padding:25px 18px 18px;overflow:visible;box-shadow:none}.topline{margin-bottom:14px}.kicker{font-size:10px;margin-bottom:7px}h1{font-size:30px}.intro{font-size:13px;margin:10px 0 18px}.groups{grid-template-columns:1fr;gap:12px}.group{padding:16px}.group-heading{min-height:0;padding-bottom:12px;margin-bottom:8px}h2{font-size:17px}.entry{grid-template-columns:1fr 88px;min-height:54px;padding:6px 0}.term{font-size:12px}.photo{width:88px}.filename{font-size:9px}.definition{font-size:11px;margin-top:12px;padding-top:10px}footer{font-size:9px;margin-top:16px;padding-top:10px}}
+@media print{@page{size:16in 9in;margin:0}html,body{width:100%;height:100%;padding:0;background:#fff}.slide{width:100%;height:100%;aspect-ratio:auto;box-shadow:none;border:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="slide">
+<header>
+<div class="topline"></div>
+<p class="kicker">Environnement · Synthèse</p>
+<h1>Constat écologique</h1>
+<p class="intro">Les principaux enjeux environnementaux peuvent être regroupés en trois grandes classes :</p>
+</header>
+<section class="groups" aria-label="Les trois grandes classes">
+<article class="group">
+<div class="group-heading"><span class="group-number">01</span><h2>Dérèglement climatique</h2></div>
+<div class="entries">
+<div class="entry"><span class="term">Effet de serre</span><button class="photo" type="button" aria-label="Agrandir : Effet de serre"><img src="images/Effet.png" alt="Illustration de l’effet de serre"><span class="filename">Effet.png</span></button></div>
+<div class="entry"><span class="term">Hausse des températures</span><button class="photo" type="button" aria-label="Agrandir : Hausse des températures"><img src="images/temperature.png" alt="Illustration de la hausse des températures"><span class="filename">temperature.png</span></button></div>
+<div class="entry"><span class="term">Fonte des glaces</span><button class="photo" type="button" aria-label="Agrandir : Fonte des glaces"><img src="images/fonte-glaces.png" alt="Illustration de la fonte des glaces"><span class="filename">fonte-glaces.png</span></button></div>
+<div class="entry"><span class="term">Épaisseur de la banquise</span><button class="photo" type="button" aria-label="Agrandir : Épaisseur de la banquise"><img src="images/banquise.jpg" alt="Illustration de l’épaisseur de la banquise"><span class="filename">banquise.jpg</span></button></div>
+<div class="entry"><span class="term">Niveau de la mer</span><button class="photo" type="button" aria-label="Agrandir : Niveau de la mer"><img src="images/niveau-mer.png" alt="Illustration du niveau de la mer"><span class="filename">niveau-mer.png</span></button></div>
+</div>
+<p class="definition"><strong>À retenir :</strong> Le réchauffement de la planète modifie le climat, fait fondre les glaces et contribue à la montée du niveau des mers.</p>
+</article>
+<article class="group">
+<div class="group-heading"><span class="group-number">02</span><h2>Pollutions et risques environnementaux</h2></div>
+<div class="entries">
+<div class="entry"><span class="term">Déchets nucléaires</span><button class="photo" type="button" aria-label="Agrandir : Déchets nucléaires"><img src="images/dechets-nucleaires.jpg" alt="Illustration des déchets nucléaires"><span class="filename">dechets-nucleaires.jpg</span></button></div>
+<div class="entry"><span class="term">Pesticides</span><button class="photo" type="button" aria-label="Agrandir : Pesticides"><img src="images/pesticides.png" alt="Illustration des pesticides"><span class="filename">pesticides.png</span></button></div>
+<div class="entry"><span class="term">Pollution de l’eau</span><button class="photo" type="button" aria-label="Agrandir : Pollution de l’eau"><img src="images/pollution-eau.png" alt="Illustration de la pollution de l’eau"><span class="filename">pollution-eau.png</span></button></div>
+<div class="entry"><span class="term">Pollution des sols</span><button class="photo" type="button" aria-label="Agrandir : Pollution des sols"><img src="images/pollution-sols.png" alt="Illustration de la pollution des sols"><span class="filename">pollution-sols.png</span></button></div>
+</div>
+<p class="definition"><strong>À retenir :</strong> Les activités humaines rejettent des substances qui contaminent l’air, l’eau et les sols et peuvent nuire aux écosystèmes.</p>
+</article>
+<article class="group">
+<div class="group-heading"><span class="group-number">03</span><h2>Raréfaction des ressources naturelles</h2></div>
+<div class="entries">
+<div class="entry"><span class="term">Eau potable disponible par habitant</span><button class="photo" type="button" aria-label="Agrandir : Eau potable disponible par habitant"><img src="images/eau-potable.png" alt="Illustration de l’eau potable disponible par habitant"><span class="filename">eau-potable.png</span></button></div>
+<div class="entry"><span class="term">Terres cultivables disponibles</span><button class="photo" type="button" aria-label="Agrandir : Terres cultivables disponibles"><img src="images/terres-cultivables.png" alt="Illustration des terres cultivables disponibles"><span class="filename">terres-cultivables.png</span></button></div>
+</div>
+<p class="definition"><strong>À retenir :</strong> Certaines ressources indispensables, comme l’eau douce et les terres agricoles, deviennent plus limitées ou plus difficiles d’accès.</p>
+</article>
+</section>
+<footer><span>LES ENJEUX ENVIRONNEMENTAUX - PRESENTE PAR MAXIME, GERMAIN, FOULQUES & QUENTIN</span><span>Diapositive principale</span></footer>
+</main>
+<dialog class="image-viewer" aria-labelledby="viewer-term">
+<button class="viewer-close" type="button" aria-label="Fermer l’image agrandie">&times;</button>
+<h2 class="viewer-term" id="viewer-term"></h2>
+<div class="viewer-photo-frame">
+<img alt="">
+</div>
+</dialog>
+<script>
+document.querySelectorAll(".photo img").forEach((image)=>{
+ const placeholder=image.nextElementSibling;
+ const update=()=>{
+  if(image.complete && image.naturalWidth>0){image.parentElement.style.aspectRatio=`${image.naturalWidth} / ${image.naturalHeight}`;placeholder.hidden=true;image.parentElement.classList.add("has-image")}
+  else{image.parentElement.style.aspectRatio="";placeholder.hidden=false;image.parentElement.classList.remove("has-image")}
+ };
+ image.addEventListener("load",update);image.addEventListener("error",update);update();
+});
+const viewer=document.querySelector(".image-viewer");
+const viewerImage=viewer.querySelector("img");
+document.querySelectorAll(".photo").forEach((button)=>{
+ button.addEventListener("click",()=>{
+  viewerImage.src=button.querySelector("img").src;
+  viewerImage.alt=button.querySelector("img").alt;
+  viewer.querySelector(".viewer-term").textContent=button.closest(".entry").querySelector(".term").textContent;
+  viewer.showModal();
+ });
+});
+viewer.querySelector(".viewer-close").addEventListener("click",()=>viewer.close());
+viewerImage.addEventListener("click",()=>viewer.close());
+viewer.addEventListener("click",(event)=>{
+ if(event.target===viewer) viewer.close();
+});
+</script>
+</body>
+</html>
